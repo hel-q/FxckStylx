@@ -414,8 +414,8 @@ local manualPositions = {
 	[11309263077] = 82, -- Elton John - Heart Skip
 	[10214415687] = 83, -- Mean Mug - Tommy Hilfiger
 	[10147924028] = 87, -- BURBERRY LOLA ATTITUDE - NIMBUS
-	[4102315500] = 152, -- Haha
-	[4049646104] = 151, -- Line Dance
+	[4102315500] = 151, -- Haha
+	[4049646104] = 152, -- Line Dance
 	
 }
 
@@ -713,3 +713,4 @@ if LocalPlayer.Character then
 	CharacterAdded(LocalPlayer.Character)
 end
 LocalPlayer.CharacterAdded:Connect(CharacterAdded)
+
