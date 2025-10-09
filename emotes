@@ -355,36 +355,68 @@ end
 
 local AvatarEditorService = game:GetService("AvatarEditorService")
 
--- 1️⃣ All creators you want to pull from
 local creatorNames = {
 	"Roblox",
 	"Elton John Official Roblox Group",
 	"Republic Records on Roblox",
 	"Burberry",
-	"Tommy Hilfiger"
+	"Tommy Hilfiger",
+	"HUGO",
+    "NBA x F84",
+    "Team USA: Paris 2024",
+	"e.l.f. UP!",
+	"Paris Hilton + 11:11 Media",
+	"Sony Immersive Music Studios",
+	"Alo Yoga"
 }
 
 -- 2️⃣ Emotes you want to manually position by ID
 local manualPositions = {
-	[18443268949] = 23, -- SpongeBob Imaginaaation 🌈
-	[17360720445] = 31, -- HUGO Let's Drive!
-	[15392937495] = 76, -- Paris Hilton - Checking My Angles
-	[15392932768] = 75, -- Paris Hilton - Iconic IT-Grrrl
+	[17360720445] = 21, -- HUGO Let's Drive!
 	[14024722653] = 91, -- Tommy K-Pop Mic Drop
 	[16303091119] = 41, -- Beauty Touchdown
-	[13823339506] = 108, -- Tommy - Archer
-	[10214415687] = 126, -- Mean Mug - Tommy Hilfiger
-	[10275057230] = 124, -- Uprise - Tommy Hilfiger
-	[14900153406] = 82, -- Twice - Feel Special
+	[13823339506] = 68, -- Tommy - Archer
+	[10275057230] = 85, -- Uprise - Tommy Hilfiger
+	[14900153406] = 55, -- Twice - Feel Special
 	[15571538346] = 65, -- Nicki Minaj - Boom Boom Boom
-	[10214406616] = 133, -- Frosty Flair Tommy Hilfiger
-	[18526338976] = 22, -- Team USA Breaking Emote
-	[10214411646] = 127, -- Floor Rock Freeze - Tommy Hilfiger
-	[16215060261] = 59, -- TWICE I GOT YOU part 1
+	[10214406616] = 86, -- Frosty Flair Tommy Hilfiger
+	[18526338976] = 17, -- Team USA Breaking Emote
+	[10214411646] = 84, -- Floor Rock Freeze - Tommy Hilfiger
+	[16215060261] = 34, -- TWICE I GOT YOU part 1
+	[16256253954] = 33, -- TWICE I GOT YOU part 2
 	[11309263077] = 131, -- Elton John - Heart Skip
-	[17748346932] = 124, -- Elton John - Heart Shuffle
-	[11753545334] = 125, -- Elton John - Rock Out
-	[100773414188482] = 7, -- Stray Kids Walkin On Water
+	[17748346932] = 19, -- Elton John - Heart Shuffle
+	[11753545334] = 78, -- Elton John - Rock Out
+	[100773414188482] = 1, -- Stray Kids Walkin On Water
+	[18526373545] = 18, -- NBA WNBA - Fadeaway
+	[11394056822] = 79, -- Elton John - Elevate
+	[5915773992] = 124, -- Break Dance
+    [5938397555] = 123, -- Rodeo Dance (Lil Nas X)
+	[18148839527] = 20, -- Rolling Stones - Guitar Strum
+	[16303091119] = 32, -- Beauty Touchdown
+	[15571538346] = 46, -- Nicki Minaj - Boom Boom Boom
+	[15571536896] = 47, -- Nicki Minaj - That's That Super Bass
+	[15554016057] = 48, -- Olivia Rodrigo - Fall Back to Float
+	[15123050663] = 52, -- Bone Chillin' Bop
+	[15439457146] = 51, -- BLACKPINK JENNIE - You and Me
+	[15571539403] = 45, -- Nicki Minaj - Anaconda
+	[15506496093] = 49, -- Rock n Roll
+	[15506503658] = 50, -- Victory Dance
+	[14548711723] = 56, -- BLACKPINK - Pink Venom (Straight to Ya Dome)
+	[14901369589] = 54, -- BLACKPINK - Shut Down Part 1
+	[14901371589] = 53, -- BLACKPINK - Shut Down Part 2
+	[14548710952] = 57, -- BLACKPINK - Pink Venom (I Bring the Pain Like)
+	[14353425085] = 59, -- Baby Queen - Strut
+	[14548709888] = 58, -- BLACKPINK - Pink Venom (Get 'em Get 'em Get 'em)
+	[12715397488] = 75, -- TWICE - Set Me Free (Dance 2)
+	[12715393154] = 76, -- TWICE - Moonlight Sunrise|
+	[12507097350] = 77, -- Alo Yoga Pose - Lotus Position
+	[11309263077] = 82, -- Elton John - Heart Skip
+	[10214415687] = 83, -- Mean Mug - Tommy Hilfiger
+	[10147924028] = 87, -- BURBERRY LOLA ATTITUDE - NIMBUS
+	[4102315500] = 152, -- Haha
+	[4049646104] = 151, -- Line Dance
+	
 }
 
 -- 3️⃣ Helper for safe catalog fetching
