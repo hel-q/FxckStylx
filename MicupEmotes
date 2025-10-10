@@ -14,7 +14,7 @@ local Animations = {
 	{Name="Roll", ID="rbxassetid://116818881329505"},
 	{Name="Sit", ID="rbxassetid://13026869403"},
 	{Name="Long Head", ID="rbxassetid://137445502103066"},
-	{Name="Hold Head", ID="rbxassetid://11137338685"},
+	{Name="Hold Head", ID="rbxassetid://9470088341563"},
 	{Name="Long Body", ID="rbxassetid://124072584017964"},
 }
 
@@ -187,6 +187,7 @@ for _, data in ipairs(Animations) do
 end
 
 print("Animation GUI loaded successfully!")
+
 
 
 
