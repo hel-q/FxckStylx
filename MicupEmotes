@@ -1,4 +1,186 @@
-local v0=game:GetService("Players");local v1=game:GetService("TweenService");local v2=game:GetService("UserInputService");local v3=v0.LocalPlayer;local v4={{Name="Ghostly",ID="rbxassetid://124385779438289"},{Name="Handstand",ID="rbxassetid://13027233338"},{Name="Jumpscare",ID="rbxassetid://11277172414"},{Name="Oof",ID="rbxassetid://134763058840745"},{Name="Die",ID="rbxassetid://14852161489"},{Name="Roll",ID="rbxassetid://116818881329505"},{Name="Sit",ID="rbxassetid://13026869403"}};local v5=Instance.new("ScreenGui");v5.Name="AnimationGUI";v5.ResetOnSpawn=true;v5.Parent=v3:WaitForChild("PlayerGui");local v9=Instance.new("Frame");v9.Size=UDim2.new(0 + 0 ,328 -78 ,1187 -(1069 + 118) ,635 -355 );v9.Position=UDim2.new(0.05,0,0.3,0 -0 );v9.BackgroundColor3=Color3.fromRGB(35,7 + 28 ,62 -27 );v9.BorderSizePixel=0 + 0 ;v9.Parent=v5;local v15=Instance.new("UICorner",v9);v15.CornerRadius=UDim.new(791 -(368 + 423) ,10);local v17=Instance.new("Frame");v17.Size=UDim2.new(3 -2 ,0,18 -(10 + 8) ,122 -90 );v17.BackgroundColor3=Color3.fromRGB(50,50,492 -(416 + 26) );v17.BorderSizePixel=0 -0 ;v17.Parent=v9;local v22=Instance.new("TextLabel");v22.Size=UDim2.new(1, -36,1,0);v22.Position=UDim2.new(0,5 + 5 ,0,0 -0 );v22.BackgroundTransparency=439 -(145 + 293) ;v22.Text="Micup Emotes By Stylx";v22.TextColor3=Color3.new(431 -(44 + 386) ,1,1487 -(998 + 488) );v22.Font=Enum.Font.GothamBold;v22.TextSize=5 + 9 ;v22.TextXAlignment=Enum.TextXAlignment.Left;v22.Parent=v17;local v34=Instance.new("TextButton");v34.Size=UDim2.new(0 + 0 ,802 -(201 + 571) ,1,1138 -(116 + 1022) );v34.Position=UDim2.new(4 -3 , -(18 + 12),0 -0 ,0 -0 );v34.BackgroundColor3=Color3.fromRGB(929 -(814 + 45) ,172 -102 ,4 + 66 );v34.TextColor3=Color3.new(1 + 0 ,886 -(261 + 624) ,1 -0 );v34.Font=Enum.Font.GothamBold;v34.TextSize=1098 -(1020 + 60) ;v34.Text="-";v34.Parent=v17;local v43=Instance.new("UICorner",v34);v43.CornerRadius=UDim.new(0,6);local v45=Instance.new("Frame");v45.Size=UDim2.new(1424 -(630 + 793) , -(40 -28),4 -3 , -(18 + 26));v45.Position=UDim2.new(0,20 -14 ,1747 -(760 + 987) ,1951 -(1789 + 124) );v45.BackgroundTransparency=767 -(745 + 21) ;v45.Parent=v9;local v50=Instance.new("UIListLayout");v50.Padding=UDim.new(0 + 0 ,8);v50.FillDirection=Enum.FillDirection.Vertical;v50.HorizontalAlignment=Enum.HorizontalAlignment.Center;v50.Parent=v45;local v57=false;local v58,v59;local function v60(v65) local v66=v65.Position-v58 ;v9.Position=UDim2.new(v59.X.Scale,v59.X.Offset + v66.X ,v59.Y.Scale,v59.Y.Offset + v66.Y );end v17.InputBegan:Connect(function(v68) if (v68.UserInputType==Enum.UserInputType.MouseButton1) then local v86=0;local v87;while true do if (v86==(0 -0)) then v87=0;while true do if (v87==(0 -0)) then v57=true;v58=v68.Position;v87=1 + 0 ;end if (v87==1) then v59=v9.Position;break;end end break;end end end end);v17.InputEnded:Connect(function(v69) if (v69.UserInputType==Enum.UserInputType.MouseButton1) then v57=false;end end);v2.InputChanged:Connect(function(v70) if (v57 and (v70.UserInputType==Enum.UserInputType.MouseMovement)) then v60(v70);end end);local v61=false;v34.MouseButton1Click:Connect(function() local v71=0 + 0 ;local v72;while true do if (v71==2) then v34.Text=(v61 and "+") or "-" ;break;end if (v71==0) then v61= not v61;v45.Visible= not v61;v71=1056 -(87 + 968) ;end if (v71==(4 -3)) then v72=(v61 and UDim2.new(0 + 0 ,250,0 -0 ,1449 -(447 + 966) )) or UDim2.new(0 -0 ,2067 -(1703 + 114) ,0,280) ;v1:Create(v9,TweenInfo.new(701.2 -(376 + 325) ,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Size=v72}):Play();v71=2 -0 ;end end end);local v62=nil;local v63=nil;local function v64(v73,v74) local v75=0;local v76;local v77;local v78;local v79;local v80;while true do if (v75==(2 -1)) then v78=nil;v79=nil;v75=1 + 1 ;end if (v75==(4 -2)) then v80=nil;while true do if (2==v76) then v80.Priority=Enum.AnimationPriority.Action;v80:Play();v62=v80;v63=v73;break;end if (v76==(15 -(9 + 5))) then if v62 then v62:Stop(376.3 -(85 + 291) );end v79=Instance.new("Animation");v79.AnimationId=v74;v80=v78:LoadAnimation(v79);v76=2;end if (v76==(1265 -(243 + 1022))) then v77=v3.Character or v3.CharacterAdded:Wait() ;v78=v77:FindFirstChildOfClass("Humanoid");if  not v78 then return;end if ((v63==v73) and v62) then v62:Stop(0.3 -0 );v62=nil;v63=nil;return;end v76=1 + 0 ;end end break;end if (v75==0) then v76=1180 -(1123 + 57) ;v77=nil;v75=1 + 0 ;end end end for v81,v82 in ipairs(v4) do local v83=254 -(163 + 91) ;local v84;local v85;while true do if (v83==(1930 -(1869 + 61))) then v84=Instance.new("TextButton");v84.Size=UDim2.new(1 + 0 , -10,0 -0 ,51 -17 );v84.BackgroundColor3=Color3.fromRGB(9 + 51 ,60,82 -22 );v83=1 + 0 ;end if (v83==2) then v84.Text=v82.Name;v84.Parent=v45;v85=Instance.new("UICorner",v84);v83=1477 -(1329 + 145) ;end if (v83==(974 -(140 + 831))) then v85.CornerRadius=UDim.new(1850 -(1409 + 441) ,724 -(15 + 703) );v84.MouseEnter:Connect(function() v84.BackgroundColor3=Color3.fromRGB(85,40 + 45 ,85);end);v84.MouseLeave:Connect(function() v84.BackgroundColor3=Color3.fromRGB(498 -(262 + 176) ,60,60);end);v83=1725 -(345 + 1376) ;end if (v83==4) then v84.MouseButton1Click:Connect(function() v64(v82.Name,v82.ID);end);break;end if (v83==(689 -(198 + 490))) then v84.TextColor3=Color3.new(1,4 -3 ,2 -1 );v84.Font=Enum.Font.GothamBold;v84.TextSize=1220 -(696 + 510) ;v83=3 -1 ;end end end print("Animation GUI loaded successfully!");
--- ⚠️ WARNING: integrity protected!
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
 
+local player = Players.LocalPlayer
 
+-- Animation List
+local Animations = {
+	{Name="Ghostly", ID="rbxassetid://124385779438289"},
+	{Name="Handstand", ID="rbxassetid://13027233338"},
+	{Name="Jumpscare", ID="rbxassetid://11277172414"},
+	{Name="Oof", ID="rbxassetid://134763058840745"},
+	{Name="Die", ID="rbxassetid://14852161489"},
+	{Name="Roll", ID="rbxassetid://116818881329505"},
+	{Name="Sit", ID="rbxassetid://13026869403"},
+}
+
+-- 🪟 Create ScreenGui
+local gui = Instance.new("ScreenGui")
+gui.Name = "AnimationGUI"
+gui.ResetOnSpawn = true
+gui.Parent = player:WaitForChild("PlayerGui")
+
+-- Main Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 250, 0, 280)
+frame.Position = UDim2.new(0.05, 0, 0.3, 0)
+frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+local corner = Instance.new("UICorner", frame)
+corner.CornerRadius = UDim.new(0, 10)
+
+-- Title Bar
+local title = Instance.new("Frame")
+title.Size = UDim2.new(1, 0, 0, 32)
+title.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+title.BorderSizePixel = 0
+title.Parent = frame
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, -36, 1, 0)
+titleLabel.Position = UDim2.new(0, 10, 0, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "Micup Emotes by Stylx"
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.TextSize = 14
+titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+titleLabel.Parent = title
+
+-- Minimize Button
+local minBtn = Instance.new("TextButton")
+minBtn.Size = UDim2.new(0, 30, 1, 0)
+minBtn.Position = UDim2.new(1, -30, 0, 0)
+minBtn.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+minBtn.TextColor3 = Color3.new(1, 1, 1)
+minBtn.Font = Enum.Font.GothamBold
+minBtn.TextSize = 18
+minBtn.Text = "-"
+minBtn.Parent = title
+
+local uicorner = Instance.new("UICorner", minBtn)
+uicorner.CornerRadius = UDim.new(0, 6)
+
+-- Scrollable Content Container
+local content = Instance.new("ScrollingFrame")
+content.Size = UDim2.new(1, -12, 1, -44)
+content.Position = UDim2.new(0, 6, 0, 38)
+content.BackgroundTransparency = 1
+content.BorderSizePixel = 0
+content.ScrollBarThickness = 6
+content.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
+content.AutomaticCanvasSize = Enum.AutomaticSize.Y
+content.CanvasSize = UDim2.new(0, 0, 0, 0)
+content.Parent = frame
+
+local layout = Instance.new("UIListLayout")
+layout.Padding = UDim.new(0, 8)
+layout.FillDirection = Enum.FillDirection.Vertical
+layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+layout.Parent = content
+
+-- Dragging Logic
+local dragging = false
+local dragStart, startPos
+
+local function updateDrag(input)
+	local delta = input.Position - dragStart
+	frame.Position = UDim2.new(
+		startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y
+	)
+end
+
+title.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true
+		dragStart = input.Position
+		startPos = frame.Position
+	end
+end)
+
+title.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = false
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+		updateDrag(input)
+	end
+end)
+
+-- Minimize Toggle
+local minimized = false
+minBtn.MouseButton1Click:Connect(function()
+	minimized = not minimized
+	content.Visible = not minimized
+	local goalSize = minimized and UDim2.new(0, 250, 0, 36) or UDim2.new(0, 250, 0, 280)
+	TweenService:Create(frame, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = goalSize}):Play()
+	minBtn.Text = minimized and "+" or "-"
+end)
+
+-- Animation Toggle System
+local currentTrack = nil
+local currentAnimName = nil
+
+local function ToggleAnimation(animName, animId)
+	local character = player.Character or player.CharacterAdded:Wait()
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if not humanoid then return end
+
+	-- stop if same animation clicked
+	if currentAnimName == animName and currentTrack then
+		currentTrack:Stop(0.3)
+		currentTrack = nil
+		currentAnimName = nil
+		return
+	end
+
+	-- stop any previous animation
+	if currentTrack then
+		currentTrack:Stop(0.3)
+	end
+
+	-- load and play new animation
+	local anim = Instance.new("Animation")
+	anim.AnimationId = animId
+	local track = humanoid:LoadAnimation(anim)
+	track.Priority = Enum.AnimationPriority.Action
+	track:Play()
+
+	currentTrack = track
+	currentAnimName = animName
+end
+
+-- Create Animation Buttons
+for _, data in ipairs(Animations) do
+	local btn = Instance.new("TextButton")
+	btn.Size = UDim2.new(1, -10, 0, 34)
+	btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+	btn.TextColor3 = Color3.new(1, 1, 1)
+	btn.Font = Enum.Font.GothamBold
+	btn.TextSize = 14
+	btn.Text = data.Name
+	btn.Parent = content
+
+	local corner = Instance.new("UICorner", btn)
+	corner.CornerRadius = UDim.new(0, 6)
+
+	btn.MouseEnter:Connect(function()
+		btn.BackgroundColor3 = Color3.fromRGB(85, 85, 85)
+	end)
+	btn.MouseLeave:Connect(function()
+		btn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+	end)
+
+	btn.MouseButton1Click:Connect(function()
+		ToggleAnimation(data.Name, data.ID)
+	end)
+end
+
+print("Animation GUI loaded successfully!")
