@@ -10,6 +10,7 @@ local Animations = {
 	{Name="Handstand", ID="rbxassetid://13027233338"},
 	{Name="Jumpscare", ID="rbxassetid://11277172414"},
 	{Name="Oof", ID="rbxassetid://134763058840745"},
+	{Name="Die", ID="rbxassetid://14852161489"},
 }
 
 -- create screen gui
@@ -171,5 +172,6 @@ for _, data in ipairs(Animations) do
 		ToggleAnimation(data.Name, data.ID)
 	end)
 end
+
 
 print("Animation GUI loaded successfully!")
