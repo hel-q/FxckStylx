@@ -13,6 +13,8 @@ local Animations = {
 	{Name="Die", ID="rbxassetid://14852161489"},
 	{Name="Roll", ID="rbxassetid://116818881329505"},
 	{Name="Sit", ID="rbxassetid://13026869403"},
+	{Name="Long Head", ID="rbxassetid://137445502103066"},
+	{Name="Hold Head", ID="rbxassetid://1137338685"},
 }
 
 -- 🪟 Create ScreenGui
@@ -184,3 +186,4 @@ for _, data in ipairs(Animations) do
 end
 
 print("Animation GUI loaded successfully!")
+
