@@ -1,0 +1,475 @@
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local LogService = game:GetService("LogService")
+
+-- player refs
+local lplr = Players.LocalPlayer
+assert(lplr, "This script must run as a LocalScript in StarterPlayerScripts.")
+
+local uis = UserInputService
+local ts = TweenService
+
+-- Styling constants
+local CORNER_RADIUS = UDim.new(0, 10)
+local COLOR_BG = Color3.fromRGB(18,18,18)
+local COLOR_PANEL = Color3.fromRGB(34,34,34)
+local COLOR_ACCENT = Color3.fromRGB(60,60,60)
+local TEXT_COLOR = Color3.fromRGB(235,235,235)
+local STROKE = Color3.fromRGB(75,75,75)
+
+-- Create GUI (parent to PlayerGui)
+local Bang = Instance.new("ScreenGui")
+Bang.Name = "BangPremium"
+Bang.ResetOnSpawn = false
+Bang.IgnoreGuiInset = true
+Bang.Parent = lplr:WaitForChild("PlayerGui")
+
+-- Main vertical panel (this will act like your Topbar in logic)
+local Topbar = Instance.new("Frame")
+Topbar.Name = "Topbar"
+Topbar.AnchorPoint = Vector2.new(0, 0)
+Topbar.Position = UDim2.new(0.03, 0, 0.25, 0) -- left-ish vertical panel
+Topbar.Size = UDim2.new(0, 220, 0, 360)
+Topbar.BackgroundColor3 = COLOR_PANEL
+Topbar.BackgroundTransparency = 0.06
+Topbar.BorderSizePixel = 0
+Topbar.Parent = Bang
+
+local TopbarCorner = Instance.new("UICorner")
+TopbarCorner.CornerRadius = CORNER_RADIUS
+TopbarCorner.Parent = Topbar
+
+local TopbarStroke = Instance.new("UIStroke")
+TopbarStroke.Color = STROKE
+TopbarStroke.Transparency = 0.75
+TopbarStroke.Thickness = 1
+TopbarStroke.Parent = Topbar
+
+local TopPadding = Instance.new("UIPadding", Topbar)
+TopPadding.PaddingTop = UDim.new(0, 12)
+TopPadding.PaddingLeft = UDim.new(0, 12)
+TopPadding.PaddingRight = UDim.new(0, 12)
+TopPadding.PaddingBottom = UDim.new(0, 12)
+
+local TopLayout = Instance.new("UIListLayout", Topbar)
+TopLayout.SortOrder = Enum.SortOrder.LayoutOrder
+TopLayout.Padding = UDim.new(0, 10)
+TopLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+TopLayout.VerticalAlignment = Enum.VerticalAlignment.Top
+
+-- Title (also used for showing mode text)
+local TitleLabel = Instance.new("TextLabel")
+TitleLabel.Name = "TitleLabel"
+TitleLabel.Parent = Topbar
+TitleLabel.Size = UDim2.new(1, 0, 0, 28)
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Text = "Mode: Find Player"
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.TextColor3 = TEXT_COLOR
+TitleLabel.TextSize = 14
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+TitleLabel.LayoutOrder = 1
+
+-- Main content frame (holds inputs / buttons)
+local Main = Instance.new("Frame")
+Main.Name = "Main"
+Main.Parent = Topbar
+Main.Size = UDim2.new(1, 0, 1, -70)
+Main.BackgroundTransparency = 1
+Main.BorderSizePixel = 0
+Main.LayoutOrder = 2
+Main.ClipsDescendants = true
+
+local MainLayout = Instance.new("UIListLayout", Main)
+MainLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+MainLayout.VerticalAlignment = Enum.VerticalAlignment.Top
+MainLayout.Padding = UDim.new(0, 8)
+MainLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+-- Speed label
+local SpeedLabel = Instance.new("TextLabel")
+SpeedLabel.Name = "SpeedLabel"
+SpeedLabel.Parent = Main
+SpeedLabel.BackgroundTransparency = 1
+SpeedLabel.Size = UDim2.new(1, 0, 0, 20)
+SpeedLabel.Text = "Speed"
+SpeedLabel.Font = Enum.Font.Gotham
+SpeedLabel.TextColor3 = TEXT_COLOR
+SpeedLabel.TextSize = 14
+
+-- Speed input (SpeedNum)
+local SpeedNum = Instance.new("TextBox")
+SpeedNum.Name = "SpeedNum"
+SpeedNum.Parent = Main
+SpeedNum.Size = UDim2.new(1, 0, 0, 32)
+SpeedNum.BackgroundColor3 = Color3.fromRGB(28,28,28)
+SpeedNum.TextColor3 = Color3.fromRGB(230,230,230)
+SpeedNum.PlaceholderText = "1 (higher = faster)"
+SpeedNum.Font = Enum.Font.Gotham
+SpeedNum.TextSize = 14
+SpeedNum.BorderSizePixel = 0
+SpeedNum.ClearTextOnFocus = false
+local SpeedNumCorner = Instance.new("UICorner", SpeedNum)
+SpeedNumCorner.CornerRadius = UDim.new(0, 8)
+
+-- Row: Speed & Set button (we'll keep them stacked vertically for vertical look)
+local SpeedBtn = Instance.new("TextButton")
+SpeedBtn.Name = "Speed"
+SpeedBtn.Parent = Main
+SpeedBtn.Size = UDim2.new(1, 0, 0, 36)
+SpeedBtn.BackgroundColor3 = COLOR_ACCENT
+SpeedBtn.TextColor3 = TEXT_COLOR
+SpeedBtn.Font = Enum.Font.GothamBold
+SpeedBtn.Text = "Set Speed"
+SpeedBtn.TextSize = 14
+SpeedBtn.BorderSizePixel = 0
+local SpeedBtnCorner = Instance.new("UICorner", SpeedBtn)
+SpeedBtnCorner.CornerRadius = UDim.new(0, 8)
+
+-- Hide button
+local Hide = Instance.new("TextButton")
+Hide.Name = "Hide"
+Hide.Parent = Main
+Hide.Size = UDim2.new(1, 0, 0, 30)
+Hide.BackgroundColor3 = COLOR_PANEL
+Hide.BackgroundTransparency = 0.02
+Hide.Text = "Hide"
+Hide.Font = Enum.Font.Gotham
+Hide.TextColor3 = TEXT_COLOR
+Hide.TextSize = 14
+Hide.BorderSizePixel = 0
+local HideCorner = Instance.new("UICorner", Hide)
+HideCorner.CornerRadius = UDim.new(0, 8)
+
+-- StopPlay (Start) button
+local StopPlay = Instance.new("TextButton")
+StopPlay.Name = "StopPlay"
+StopPlay.Parent = Main
+StopPlay.Size = UDim2.new(1, 0, 0, 46)
+StopPlay.BackgroundColor3 = Color3.fromRGB(85,85,85)
+StopPlay.Text = "Start"
+StopPlay.Font = Enum.Font.GothamBold
+StopPlay.TextColor3 = TEXT_COLOR
+StopPlay.TextSize = 16
+StopPlay.BorderSizePixel = 0
+StopPlay.AutoButtonColor = true
+local StopPlayCorner = Instance.new("UICorner", StopPlay)
+StopPlayCorner.CornerRadius = UDim.new(0, 10)
+
+-- Mode button (toggles name mode)
+local Mode = Instance.new("TextButton")
+Mode.Name = "Mode"
+Mode.Parent = Main
+Mode.Size = UDim2.new(1, 0, 0, 34)
+Mode.BackgroundColor3 = COLOR_ACCENT
+Mode.Text = "Mode: Find Player"
+Mode.Font = Enum.Font.Gotham
+Mode.TextColor3 = TEXT_COLOR
+Mode.TextSize = 14
+Mode.BorderSizePixel = 0
+local ModeCorner = Instance.new("UICorner", Mode)
+ModeCorner.CornerRadius = UDim.new(0, 8)
+
+-- "Made by Stylx" footer label
+local Credit = Instance.new("TextLabel")
+Credit.Name = "Credit"
+Credit.Parent = Topbar
+Credit.Size = UDim2.new(1, 0, 0, 20)
+Credit.BackgroundTransparency = 1
+Credit.Text = "Made by Stylx"
+Credit.Font = Enum.Font.GothamSemibold
+Credit.TextColor3 = Color3.fromRGB(160, 160, 160)
+Credit.TextTransparency = 0.2
+Credit.TextScaled = true
+Credit.LayoutOrder = 99
+
+-- Username (off-screen element for name mode)
+local Username = Instance.new("TextBox")
+Username.Name = "Username"
+Username.Parent = Topbar
+Username.Size = UDim2.new(0.96, 0, 0, 32)
+Username.Position = UDim2.new(1.02, 0, 0.02, 0) -- off-screen to right
+Username.BackgroundColor3 = COLOR_BG
+Username.BackgroundTransparency = 0.02
+Username.BorderSizePixel = 0
+Username.PlaceholderText = "Player Name or Display Name..."
+Username.Text = ""
+Username.Font = Enum.Font.Gotham
+Username.TextColor3 = TEXT_COLOR
+Username.TextSize = 14
+Username.Visible = false
+local UsernameCorner = Instance.new("UICorner", Username)
+UsernameCorner.CornerRadius = UDim.new(0, 8)
+
+-- Show button (small)
+local Show = Instance.new("TextButton")
+Show.Name = "Show"
+Show.Parent = Bang
+Show.AnchorPoint = Vector2.new(0.5, 0)
+Show.Position = UDim2.new(0.5, 0, 0.04, 0)
+Show.Size = UDim2.new(0, 110, 0, 30)
+Show.BackgroundColor3 = COLOR_PANEL
+Show.Text = "Show UI"
+Show.Font = Enum.Font.GothamBold
+Show.TextColor3 = TEXT_COLOR
+Show.TextSize = 14
+Show.Visible = false
+local ShowCorner = Instance.new("UICorner", Show)
+ShowCorner.CornerRadius = UDim.new(0, 8)
+
+-- Small helpers
+local hstinfo = TweenInfo.new(1, Enum.EasingStyle.Circular, Enum.EasingDirection.Out)
+local hstinfo2 = TweenInfo.new(0.3, Enum.EasingStyle.Circular, Enum.EasingDirection.Out)
+local su = { Position = UDim2.fromScale(1, 0.02) } -- Username "in" properties will be created via Tween
+local hu = { Position = UDim2.fromScale(1.02, 0.02) } -- out
+
+-- =========================================================================
+-- 2. Script Logic (your logic preserved, with speed fix)
+-- =========================================================================
+
+-- Dragging logic (using Topbar as drag handle)
+local dragging = false
+local IPOS, IX, IY
+
+Topbar.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        IPOS = Topbar.Position
+        IX = uis:GetMouseLocation().X
+        IY = uis:GetMouseLocation().Y
+        dragging = true
+    end
+end)
+
+lplr:GetMouse().Move:Connect(function()
+    if dragging then
+        local newx = uis:GetMouseLocation().X - IX
+        local newy = uis:GetMouseLocation().Y - IY
+        Topbar.Position = IPOS + UDim2.fromScale(newx/lplr:GetMouse().ViewSizeX,newy/lplr:GetMouse().ViewSizeY)
+    end
+end)
+
+Topbar.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
+end)
+
+-- mode & target state
+local pnamemode = false
+local wfc = false
+local target = nil
+local curspeed = 1
+
+-- Speed button (same UI name as your original code)
+SpeedBtn.MouseButton1Click:Connect(function()
+    if tonumber(SpeedNum.Text) then
+        curspeed = tonumber(SpeedNum.Text)
+    else
+        SpeedBtn.Active = false
+        -- Flash red animation for invalid input
+        SpeedBtn.BackgroundColor3 = Color3.fromRGB(104,0,0)
+        task.wait(0.3)
+        SpeedBtn.BackgroundColor3 = COLOR_ACCENT
+        task.wait(0.2)
+        SpeedBtn.BackgroundColor3 = Color3.fromRGB(104,0,0)
+        task.wait(0.3)
+        SpeedBtn.BackgroundColor3 = COLOR_ACCENT
+        task.wait(0.2)
+        SpeedBtn.Active = true
+    end
+end)
+
+-- Tweens for Username (slide in/out)
+local suTweenProps = { Position = UDim2.new(0.02, 0, 0.02, 0) } -- visible on the left within Topbar
+local huTweenProps = { Position = UDim2.new(1.02, 0, 0.02, 0) } -- hidden to the right
+
+local au = nil
+
+Mode.MouseButton1Click:Connect(function()
+    if wfc then return end
+    if pnamemode then
+        -- currently By Name -> switch to Find Player
+        if au then au:Pause(); au:Destroy(); au = nil end
+        -- tween out (move Username off-screen) then hide
+        Username.Visible = true
+        au = ts:Create(Username, hstinfo2, huTweenProps)
+        Mode.Text = "Mode: Find Player"
+        au:Play()
+        pnamemode = not pnamemode
+        au.Completed:Wait()
+        Username.Visible = false
+    else
+        -- currently Find Player -> switch to By Name
+        if au then au:Pause(); au:Destroy(); au = nil end
+        Username.Visible = true
+        au = ts:Create(Username, hstinfo2, suTweenProps)
+        Mode.Text = "Mode: By Name"
+        au:Play()
+        pnamemode = not pnamemode
+    end
+end)
+
+-- Touch variable holder
+local touched = nil
+
+-- Start/Stop behavior (StopPlay button)
+StopPlay.MouseButton1Click:Connect(function()
+    if not target and wfc ~= true then
+        if pnamemode then
+            -- Target by name mode
+            local foundTarget = false
+            for _,plr in pairs(game.Players:GetPlayers()) do
+                if plr ~= lplr and plr.Character then
+                    -- Check both Name and DisplayName (prefix)
+                    local search = Username.Text or ""
+                    if search ~= "" and (string.match(plr.Name,"^"..search) or (plr.DisplayName ~= "" and string.match(plr.DisplayName,"^"..search))) then
+                        target = plr.Character
+                        if lplr.Character and lplr.Character:FindFirstChild("Humanoid") then
+                            lplr.Character:FindFirstChild("Humanoid").PlatformStand = true
+                        end
+                        StopPlay.Text = "Stop"
+                        foundTarget = true
+                        break
+                    end
+                end
+            end
+            if not foundTarget then
+                -- Flash red if target not found
+                StopPlay.BackgroundColor3 = Color3.fromRGB(104,0,0)
+                task.wait(0.5)
+                StopPlay.BackgroundColor3 = COLOR_ACCENT
+            end
+        elseif not pnamemode then
+            -- Target by touch mode
+            if lplr.Character and lplr.Character:FindFirstChildOfClass("Humanoid") and lplr.Character:FindFirstChildOfClass("Humanoid").RootPart then
+                StopPlay.Text = "Waiting for Humanoid"
+                wfc = true
+                touched = lplr.Character:FindFirstChildOfClass("Humanoid").RootPart.Touched:Connect(function(part)
+                    if part and not part:IsDescendantOf(lplr.Character) then
+                        local hitPlayer = game.Players:GetPlayerFromCharacter(part.Parent)
+                        if hitPlayer and hitPlayer ~= lplr then
+                            target = hitPlayer.Character
+                            wfc = false
+                            if lplr.Character and lplr.Character:FindFirstChild("Humanoid") then
+                                lplr.Character:FindFirstChild("Humanoid").PlatformStand = true
+                            end
+                            StopPlay.Text = "Stop"
+                            if touched then touched:Disconnect() touched = nil end
+                        end
+                    end
+                end)
+            end
+        end
+    elseif target then
+        -- Stop mode
+        if lplr.Character and lplr.Character:FindFirstChild("Humanoid") then
+            lplr.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.GettingUp)
+        end
+        StopPlay.Text = "Start"
+        target = nil
+    elseif wfc then
+        -- Cancel waiting mode
+        wfc = false
+        if touched then touched:Disconnect() touched = nil end
+        StopPlay.Text = "Start"
+    end
+end)
+
+-- Fixed speed logic: make higher numbers = faster
+local rev = false
+local eft = 0
+RunService.PreSimulation:Connect(function(dt)
+    -- Interpret curspeed as multiplier: larger => faster oscillation
+    local speedFactor = math.clamp(curspeed, 0.05, 100)
+
+    if rev then
+        eft = eft - (dt * speedFactor)
+    else
+        eft = eft + (dt * speedFactor)
+    end
+
+    if eft >= 1 then
+        eft = 1
+        rev = true
+    elseif eft <= 0 then
+        eft = 0
+        rev = false
+    end
+
+    local count = eft -- ranges 0..1
+
+    if target and target:FindFirstChild("Humanoid") and target.Humanoid.Health > 0 then
+        local targetRoot = target:FindFirstChild("HumanoidRootPart") or target:FindFirstChild("Torso")
+        local localRoot = nil
+        if lplr.Character then localRoot = lplr.Character:FindFirstChild("HumanoidRootPart") end
+
+        if targetRoot and localRoot then
+            localRoot.CFrame = targetRoot.CFrame * CFrame.new(0,0,0.5) * CFrame.Angles(math.rad((-30 * count) + 10),0,0) * CFrame.new(0,0,1 * count)
+            -- zero velocities
+            if localRoot:IsA("BasePart") then
+                localRoot.Velocity = Vector3.new(0,0,0)
+                localRoot.RotationalVelocity = Vector3.new(0,0,0)
+            end
+        end
+    elseif target then
+        -- Stop if target is dead or missing parts
+        if lplr.Character and lplr.Character:FindFirstChild("Humanoid") then
+            lplr.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.GettingUp)
+        end
+        StopPlay.Text = "Start"
+        target = nil
+    end
+end)
+
+-- Hide/Show tweens (applies to Topbar)
+local hidep = { Size = UDim2.new(Topbar.Size.X.Scale, 0, 0, 0) } -- collapse vertically
+local showp = { Size = Topbar.Size }
+local tweenInfo = TweenInfo.new(0.85, Enum.EasingStyle.Circular, Enum.EasingDirection.Out)
+
+Hide.MouseButton1Click:Connect(function()
+    if Topbar.Visible then
+        local anim = ts:Create(Topbar, tweenInfo, hidep)
+        anim:Play()
+        anim.Completed:Wait()
+        Topbar.Visible = false
+        Show.Visible = true
+    end
+end)
+
+Show.MouseButton1Click:Connect(function()
+    if not Topbar.Visible then
+        Topbar.Visible = true
+        local anim = ts:Create(Topbar, tweenInfo, showp)
+        anim:Play()
+        anim.Completed:Wait()
+        Show.Visible = false
+    end
+end)
+
+-- Enable toggle from external LogService message
+LogService.MessageOut:Connect(function(msg, typem)
+    if msg == "showupbang" and typem == Enum.MessageType.MessageOutput then
+        Topbar.Visible = false
+        Topbar.Size = UDim2.new(Topbar.Size.X.Scale, 0, 0, 0)
+        local anim = ts:Create(Topbar, tweenInfo, showp)
+        Topbar.Visible = true
+        anim:Play()
+        anim.Completed:Wait()
+        Show.Visible = false
+    end
+end)
+
+Mode.Text = "Mode: Find Player"
+StopPlay.Text = "Start"
+SpeedBtn.Text = "Set Speed"
+
+SpeedBtn.AutoButtonColor = true
+StopPlay.AutoButtonColor = true
+Mode.AutoButtonColor = true
+Hide.AutoButtonColor = true
+Show.AutoButtonColor = true
+
+-- debug print
+print("Bang Script Succesfully Loaded")
