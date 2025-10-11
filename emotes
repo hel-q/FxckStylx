@@ -419,6 +419,7 @@ local manualPositions = {
 	[4049646104] = 152, -- Line Dance
 	[16276506814] = 6, -- Sol de Janeiro
 	[16371235025] = 22, -- Skadoosh Emote - Kung Fu Panda
+	[16181840356] = 35, -- BLACKPINK Ice Cream
 	
 }
 
@@ -716,5 +717,6 @@ if LocalPlayer.Character then
 	CharacterAdded(LocalPlayer.Character)
 end
 LocalPlayer.CharacterAdded:Connect(CharacterAdded)
+
 
 
