@@ -417,7 +417,7 @@ local manualPositions = {
 	[10147924028] = 87, -- BURBERRY LOLA ATTITUDE - NIMBUS
 	[4102315500] = 151, -- Haha
 	[4049646104] = 152, -- Line Dance
-	[16276506814] = 2, -- Sol de Janeiro - Samba
+	[16276506814] = 6, -- Sol de Janeiro
 	
 }
 
@@ -715,3 +715,4 @@ if LocalPlayer.Character then
 	CharacterAdded(LocalPlayer.Character)
 end
 LocalPlayer.CharacterAdded:Connect(CharacterAdded)
+
