@@ -418,6 +418,7 @@ local manualPositions = {
 	[4102315500] = 151, -- Haha
 	[4049646104] = 152, -- Line Dance
 	[16276506814] = 6, -- Sol de Janeiro
+	[16371235025] = 22, -- Skadoosh Emote - Kung Fu Panda
 	
 }
 
@@ -715,4 +716,5 @@ if LocalPlayer.Character then
 	CharacterAdded(LocalPlayer.Character)
 end
 LocalPlayer.CharacterAdded:Connect(CharacterAdded)
+
 
