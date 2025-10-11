@@ -367,10 +367,11 @@ local creatorNames = {
 	"e.l.f. UP!",
 	"Paris Hilton + 11:11 Media",
 	"Sony Immersive Music Studios",
-	"Alo Yoga"
+	"Alo Yoga",
+	"Sol de Janeiro"
 }
 
--- 2️⃣ Emotes you want to manually position by ID
+-- 2️Emotes you want to manually position by ID
 local manualPositions = {
 	[17360720445] = 21, -- HUGO Let's Drive!
 	[14024722653] = 91, -- Tommy K-Pop Mic Drop
@@ -416,10 +417,11 @@ local manualPositions = {
 	[10147924028] = 87, -- BURBERRY LOLA ATTITUDE - NIMBUS
 	[4102315500] = 151, -- Haha
 	[4049646104] = 152, -- Line Dance
+	[16276506814] = 2, -- Sol de Janeiro - Samba
 	
 }
 
--- 3️⃣ Helper for safe catalog fetching
+-- Helper for safe catalog fetching
 local function getCatalogPage(params)
 	local success, catalogPage = pcall(function()
 		return AvatarEditorService:SearchCatalog(params)
@@ -431,7 +433,7 @@ local function getCatalogPage(params)
 	return catalogPage
 end
 
--- 4️⃣ Fetch emotes from each creator
+-- Fetch emotes from each creator
 local totalEmotes = {}
 
 for _, creator in ipairs(creatorNames) do
@@ -476,7 +478,7 @@ for _, creator in ipairs(creatorNames) do
 	end
 end
 
--- 5️⃣ Apply manual re-ordering
+-- Apply manual re-ordering
 local adjustedEmotes = {}
 for _, emote in ipairs(totalEmotes) do
 	local targetIndex = manualPositions[emote.Id]
@@ -493,7 +495,7 @@ for _, emote in ipairs(adjustedEmotes) do
 	table.insert(finalEmotes, emote)
 end
 
--- 6️⃣ Add all emotes to your GUI
+-- Add all emotes to your GUI
 for _, Emote in pairs(finalEmotes) do
 	AddEmote(Emote.Name, Emote.Id, Emote.Price)
 end
@@ -713,4 +715,3 @@ if LocalPlayer.Character then
 	CharacterAdded(LocalPlayer.Character)
 end
 LocalPlayer.CharacterAdded:Connect(CharacterAdded)
-
