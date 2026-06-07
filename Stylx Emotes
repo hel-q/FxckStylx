@@ -401,7 +401,7 @@ local ManualEmotes = {
 	{Number = 99, Name = "Baby Queen Face Frame", Id = 14353421343},
 	{Number = 102, Name = "Baby Queen Dramatic Bow", Id = 14353419229},
 	{Number = 104, Name = "Arm Twist", Id = 9710992846},
-	{Number = 106, Name = "Man City Scorpion Kick", Id = 13670984180},
+	{Number = 106, Name = "Man City Scorpion Kick", Id = 13694139364},
 	{Number = 108, Name = "Tommy Archer", Id = 13823339506},
 	{Number = 110, Name = "TWICE Fancy", Id = 13520623514},
 	{Number = 111, Name = "Man City Bicycle Kick", Id = 13422286833},
