@@ -369,7 +369,7 @@ local ManualEmotes = {
 	{Number = 29, Name = "Olympic Dismount", Id = 18666650035},
 	{Number = 32, Name = "Team USA Breaking Emote", Id = 18526338976},
 	{Number = 33, Name = "NBA WNBA - Fadeaway", Id = 18526373545},
-    {Number = 34, Name = "Elton John - Heart Shuffle", Id = 70866063275153},
+    {Number = 34, Name = "Elton John - Heart Shuffle", Id = 17748346932},
     {Number = 33, Name = "NBA WNBA - Fadeaway", Id = 16276506814},
 	{Number = 39, Name = "Sol de Janeiro - Samba", Id = 18148839527},
 	{Number = 43, Name = "HUGO Lets Drive!", Id = 17360720445},
