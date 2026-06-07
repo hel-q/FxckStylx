@@ -373,7 +373,7 @@ local ManualEmotes = {
     {Number = 33, Name = "NBA WNBA - Fadeaway", Id = 16276506814},
 	{Number = 39, Name = "Sol de Janeiro - Samba", Id = 18148839527},
 	{Number = 43, Name = "HUGO Lets Drive!", Id = 17360720445},
-	{Number = 45, Name = "BLACKPINK Lovesick Girls", Id = 77677210097223},
+	{Number = 45, Name = "BLACKPINK Lovesick Girls", Id = 16874600526},
 	{Number = 46, Name = "BLACKPINK How you like that", Id = 106889782568934},
 	{Number = 51, Name = "BLACKPINK Boombayah Emote", Id = 16553259683},
 	{Number = 52, Name = "BLACKPINK DDU-DU DDU-DU", Id = 16553262614},
