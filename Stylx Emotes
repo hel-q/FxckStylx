@@ -369,7 +369,9 @@ local ManualEmotes = {
 	{Number = 29, Name = "Olympic Dismount", Id = 18666650035},
 	{Number = 32, Name = "Team USA Breaking Emote", Id = 18526338976},
 	{Number = 33, Name = "NBA WNBA - Fadeaway", Id = 18526373545},
-	{Number = 39, Name = "Rolling Stones Guitar Strum", Id = 18148839527},
+    {Number = 34, Name = "Elton John - Heart Shuffle", Id = 70866063275153},
+    {Number = 33, Name = "NBA WNBA - Fadeaway", Id = 16276506814},
+	{Number = 39, Name = "Sol de Janeiro - Samba", Id = 18148839527},
 	{Number = 43, Name = "HUGO Lets Drive!", Id = 17360720445},
 	{Number = 45, Name = "BLACKPINK Lovesick Girls", Id = 77677210097223},
 	{Number = 46, Name = "BLACKPINK How you like that", Id = 106889782568934},
@@ -411,7 +413,7 @@ local ManualEmotes = {
 	{Number = 117, Name = "Twice Moonlight Sunrise", Id = 12715393154},
 	{Number = 121, Name = "Alo Yoga Pose", Id = 12507097350},
 	{Number = 125, Name = "Elton John - Rock Out", Id = 11753545334},
-	{Number = 129, Name = "Air Guitar", Id = 15506499986},
+	{Number = 129, Name = "Elton John - Elevate", Id = 11394056822},
 	{Number = 130, Name = "Face Calisthenics", Id = 11309309359},
 	{Number = 131, Name = "Elton John - Still Standing", Id = 11435177473},
 	{Number = 140, Name = "Mean Mug - Tommy Hilfiger", Id = 10214415687},
@@ -460,6 +462,11 @@ local ManualEmotes = {
 	{Number = 250, Name = "Point2", Id = 3576823880},
 	{Number = 252, Name = "Salute", Id = 3360689775},
 	{Number = 256, Name = "Sassy Fashion Twirl", Id = 103924340632445},
+    {Number = 257, Name = "Paris Hilton - Checking My Angles", Id = 75837489916720},
+    {Number = 258, Name = "Cuco - Levitate", Id = 15698511500},
+    {Number = 259, Name = "Skadoosh Emote - Kung Fu Panda 4", Id = 16371235025},
+    {Number = 260, Name = "Yungblud Happier Jump", Id = 15610015346},
+
 }
 
 table.sort(ManualEmotes, function(a, b)
