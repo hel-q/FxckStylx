@@ -461,6 +461,7 @@ local ManualEmotes = {
 	{Number = 249, Name = "Shrug", Id = 3576968026},
 	{Number = 250, Name = "Point2", Id = 3576823880},
 	{Number = 252, Name = "Salute", Id = 3360689775},
+	{Number = 253, Name = "haha", Id = 4102315500},
 	{Number = 256, Name = "Sassy Fashion Twirl", Id = 103924340632445},
     {Number = 257, Name = "Paris Hilton - Checking My Angles", Id = 75837489916720},
     {Number = 258, Name = "Cuco - Levitate", Id = 15698511500},
